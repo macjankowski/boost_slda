@@ -1,0 +1,230 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		0973E7642020C36900D53D9F /* ensemble_em_2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ensemble_em_2.cpp; path = ../ensemble_em_2.cpp; sourceTree = "<group>"; };
+		0973E7652020C36900D53D9F /* ensemble_em_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ensemble_em_2.h; path = ../ensemble_em_2.h; sourceTree = "<group>"; };
+		09B93A1F1FF6A7E400F0BF5D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
+		09B93A201FF6A7E400F0BF5D /* start.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = start.sh; path = ../start.sh; sourceTree = "<group>"; };
+		09B93A211FF6A7E400F0BF5D /* corpus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = corpus.cpp; path = ../corpus.cpp; sourceTree = "<group>"; };
+		09B93A221FF6A7E400F0BF5D /* corpus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = corpus.h; path = ../corpus.h; sourceTree = "<group>"; };
+		09B93A231FF6A7E400F0BF5D /* opt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt.cpp; path = ../opt.cpp; sourceTree = "<group>"; };
+		09B93A241FF6A7E400F0BF5D /* opt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt.h; path = ../opt.h; sourceTree = "<group>"; };
+		09B93A251FF6A7E400F0BF5D /* settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = settings.h; path = ../settings.h; sourceTree = "<group>"; };
+		09B93A261FF6A7E400F0BF5D /* settings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = settings.txt; path = ../settings.txt; sourceTree = "<group>"; };
+		09B93A271FF6A7E400F0BF5D /* slda.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = slda.cpp; path = ../slda.cpp; sourceTree = "<group>"; };
+		09B93A281FF6A7E400F0BF5D /* slda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = slda.h; path = ../slda.h; sourceTree = "<group>"; };
+		09B93A291FF6A7E400F0BF5D /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../utils.cpp; sourceTree = "<group>"; };
+		09B93A2A1FF6A7E400F0BF5D /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../utils.h; sourceTree = "<group>"; };
+		09B93A2F1FF6CB0600F0BF5D /* ensemble_em.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ensemble_em.h; path = ../ensemble_em.h; sourceTree = "<group>"; };
+		09B93A721FF7C4E900F0BF5D /* ensemble_em.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ensemble_em.cpp; path = ../ensemble_em.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		09B93A141FF6A7B200F0BF5D = {
+			isa = PBXGroup;
+			children = (
+				0973E7642020C36900D53D9F /* ensemble_em_2.cpp */,
+				0973E7652020C36900D53D9F /* ensemble_em_2.h */,
+				09B93A721FF7C4E900F0BF5D /* ensemble_em.cpp */,
+				09B93A2F1FF6CB0600F0BF5D /* ensemble_em.h */,
+				09B93A1F1FF6A7E400F0BF5D /* main.cpp */,
+				09B93A201FF6A7E400F0BF5D /* start.sh */,
+				09B93A211FF6A7E400F0BF5D /* corpus.cpp */,
+				09B93A221FF6A7E400F0BF5D /* corpus.h */,
+				09B93A231FF6A7E400F0BF5D /* opt.cpp */,
+				09B93A241FF6A7E400F0BF5D /* opt.h */,
+				09B93A251FF6A7E400F0BF5D /* settings.h */,
+				09B93A261FF6A7E400F0BF5D /* settings.txt */,
+				09B93A271FF6A7E400F0BF5D /* slda.cpp */,
+				09B93A281FF6A7E400F0BF5D /* slda.h */,
+				09B93A291FF6A7E400F0BF5D /* utils.cpp */,
+				09B93A2A1FF6A7E400F0BF5D /* utils.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		09B93A191FF6A7B200F0BF5D /* sLdaEnsemble */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 09B93A1C1FF6A7B200F0BF5D /* Build configuration list for PBXLegacyTarget "sLdaEnsemble" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/mjankowski/doc/workspace/blei/class-slda";
+			dependencies = (
+			);
+			name = sLdaEnsemble;
+			passBuildSettingsInEnvironment = 1;
+			productName = sLdaEnsemble;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		09B93A151FF6A7B200F0BF5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Maciej Jankowski";
+				TargetAttributes = {
+					09B93A191FF6A7B200F0BF5D = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 09B93A181FF6A7B200F0BF5D /* Build configuration list for PBXProject "sLdaEnsemble" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 09B93A141FF6A7B200F0BF5D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09B93A191FF6A7B200F0BF5D /* sLdaEnsemble */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		09B93A1A1FF6A7B200F0BF5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		09B93A1B1FF6A7B200F0BF5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		09B93A1D1FF6A7B200F0BF5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		09B93A1E1FF6A7B200F0BF5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09B93A181FF6A7B200F0BF5D /* Build configuration list for PBXProject "sLdaEnsemble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B93A1A1FF6A7B200F0BF5D /* Debug */,
+				09B93A1B1FF6A7B200F0BF5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09B93A1C1FF6A7B200F0BF5D /* Build configuration list for PBXLegacyTarget "sLdaEnsemble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B93A1D1FF6A7B200F0BF5D /* Debug */,
+				09B93A1E1FF6A7B200F0BF5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09B93A151FF6A7B200F0BF5D /* Project object */;
+}

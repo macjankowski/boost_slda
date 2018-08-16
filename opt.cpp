@@ -33,6 +33,7 @@ double softmax_f(const gsl_vector * x, void * opt_param)
     double PENALTY = gsl_param->PENALTY;
     slda * model = gsl_param->model;
     suffstats * ss = gsl_param->ss;
+    double * weights = gsl_param->weights;
 
     double f, t, a1 = 0.0, a2 = 0.0;
 
@@ -52,11 +53,12 @@ double softmax_f(const gsl_vector * x, void * opt_param)
     f = 0.0; //log likelihood
     for (d = 0; d < ss->num_docs; d ++)
     {
+        double doc_likelihood = 0.0;
         for (k = 0; k < model->num_topics; k ++)
         {
             if (ss->labels[d] < model->num_classes-1)
             {
-                f += model->eta[ss->labels[d]][k] * ss->z_bar[d].z_bar_m[k];
+                doc_likelihood += model->eta[ss->labels[d]][k] * ss->z_bar[d].z_bar_m[k];
             }
         }
 
@@ -77,7 +79,8 @@ double softmax_f(const gsl_vector * x, void * opt_param)
             a2 = 1.0 + 0.5 * a2;
             t = log_sum(t, a1 + log(a2));
         }
-        f -= t; 
+        doc_likelihood -= t;
+        f = f + weights[d] * doc_likelihood;
     }
 
     return -(f + f_regularization);
@@ -91,6 +94,7 @@ void softmax_df(const gsl_vector * x, void * opt_param, gsl_vector * df)
     suffstats * ss = gsl_param->ss;
     gsl_vector_set_zero(df);
     gsl_vector * df_tmp = gsl_vector_alloc(df->size);
+    double * weights = gsl_param->weights;
 
     double t, a1 = 0.0, a2 = 0.0, g;
     int k, d, j, l, idx;
@@ -115,7 +119,7 @@ void softmax_df(const gsl_vector * x, void * opt_param, gsl_vector * df)
             if (l < model->num_classes-1)
             {
                 idx = l*model->num_topics + k;
-                g = gsl_vector_get(df, idx) + ss->z_bar[d].z_bar_m[k];
+                g = gsl_vector_get(df, idx) + weights[d] * ss->z_bar[d].z_bar_m[k];
                 gsl_vector_set(df, idx, g);
             }
         }
@@ -149,7 +153,17 @@ void softmax_df(const gsl_vector * x, void * opt_param, gsl_vector * df)
                 gsl_vector_set(df, idx, g);
             }
         }
+        
         gsl_vector_scale(df, exp(-t));
+        
+        for (l = 0; l < model->num_classes-1; l ++){
+            for (k = 0; k < model->num_topics; k ++){
+                idx = l*model->num_topics + k;
+                g =  weights[d] * gsl_vector_get(df, idx);
+                gsl_vector_set(df, idx, g);
+            }
+        }
+        
         gsl_vector_add(df, df_tmp);
     }
     gsl_vector_scale(df, -1.0);
@@ -164,6 +178,7 @@ void softmax_fdf(const gsl_vector * x, void * opt_param, double * f, gsl_vector 
     suffstats * ss = gsl_param->ss;
     gsl_vector_set_zero(df);
     gsl_vector * df_tmp = gsl_vector_alloc(df->size);
+    double * weights = gsl_param->weights;
 
     double t, a1 = 0.0, a2 = 0.0, g;
     int k, d, j, l, idx;
@@ -186,14 +201,16 @@ void softmax_fdf(const gsl_vector * x, void * opt_param, double * f, gsl_vector 
     *f = 0.0; //log likelihood
     for (d = 0; d < ss->num_docs; d ++)
     {
+        double doc_likelihood = 0.0;
         for (k = 0; k < model->num_topics; k ++)
         {
             l = ss->labels[d];
             if (l < model->num_classes-1)
             {
-                *f += model->eta[l][k] * ss->z_bar[d].z_bar_m[k];
+                //*f += model->eta[l][k] * ss->z_bar[d].z_bar_m[k];
+                doc_likelihood += model->eta[l][k] * ss->z_bar[d].z_bar_m[k];
                 idx = l*model->num_topics + k;
-                g = gsl_vector_get(df, idx) + ss->z_bar[d].z_bar_m[k];
+                g = gsl_vector_get(df, idx) + weights[d] * ss->z_bar[d].z_bar_m[k];
                 gsl_vector_set(df, idx, g);
             }
         }
@@ -226,9 +243,21 @@ void softmax_fdf(const gsl_vector * x, void * opt_param, double * f, gsl_vector 
                 gsl_vector_set(df, idx, g);
             }
         }
+        
         gsl_vector_scale(df, exp(-t));
+        
+        for (l = 0; l < model->num_classes-1; l ++){
+            for (k = 0; k < model->num_topics; k ++){
+                idx = l*model->num_topics + k;
+                g =  weights[d] * gsl_vector_get(df, idx);
+                gsl_vector_set(df, idx, g);
+            }
+        }
+        
         gsl_vector_add(df, df_tmp);
-        *f -= t; 
+        doc_likelihood -= t;
+        *f = *f + weights[d] * doc_likelihood;
+        //*f -= t;
     }
     gsl_vector_scale(df, -1.0);
     *f = -(*f + f_regularization);

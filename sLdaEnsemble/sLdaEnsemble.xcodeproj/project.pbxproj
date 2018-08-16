@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		0973E7642020C36900D53D9F /* ensemble_em_2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ensemble_em_2.cpp; path = ../ensemble_em_2.cpp; sourceTree = "<group>"; };
+		0973E7652020C36900D53D9F /* ensemble_em_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ensemble_em_2.h; path = ../ensemble_em_2.h; sourceTree = "<group>"; };
 		09B93A1F1FF6A7E400F0BF5D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
 		09B93A201FF6A7E400F0BF5D /* start.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = start.sh; path = ../start.sh; sourceTree = "<group>"; };
 		09B93A211FF6A7E400F0BF5D /* corpus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = corpus.cpp; path = ../corpus.cpp; sourceTree = "<group>"; };
@@ -27,6 +29,8 @@
 		09B93A141FF6A7B200F0BF5D = {
 			isa = PBXGroup;
 			children = (
+				0973E7642020C36900D53D9F /* ensemble_em_2.cpp */,
+				0973E7652020C36900D53D9F /* ensemble_em_2.h */,
 				09B93A721FF7C4E900F0BF5D /* ensemble_em.cpp */,
 				09B93A2F1FF6CB0600F0BF5D /* ensemble_em.h */,
 				09B93A1F1FF6A7E400F0BF5D /* main.cpp */,

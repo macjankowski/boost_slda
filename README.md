@@ -1,100 +1,29 @@
-# Supervised latent Dirichlet allocation for classification
+Example training
 
-(C) Copyright 2009, Chong Wang, David Blei and Li Fei-Fei. Written by Chong Wang, chongw@cs.princeton.edu, part of code
-is from [lda-c](https://github.com/Blei-Lab/lda-c).
+./slda est sample-data/smsSpam/smsSpam.documents.txt sample-data/smsSpam/smsSpam.isSpam.txt settings.txt 0.1 seeded results/train_test_2 3 5,10,15,20,30
 
-This is a C++ implementation of supervised latent Dirichlet allocation (sLDA) for classification. Note that the code here is slightly different from what was described in [2] in order to speed up. Note that this is only the sLDA. The annotation part is not yet posted.
-
-## Sample data
-
-A preprocessed 8-class image dataset [2] from [Labelme](http://labelme.csail.mit.edu/). Download [./data.tgz]().
-
-UIUC Sports annotation files: annotations and meta information. The source image files can be found [here](http://vision.stanford.edu/lijiali/event_dataset/). (Note: there might be some discrepancies and it is unclear why...)
-
-## References
-
-[1] Chong Wang, David M. Blei and Li Fei-Fei. Simultaneous image classification and annotation. In CVPR, 2009. [[PDF]](http://www.cs.cmu.edu/~chongw/papers/WangBleiFeiFei2009.pdf)
-
-[2] David M. Blei and Jon McAuliffe. Supervised topic models. In NIPS, 2007. [[PDF]](http://www.cs.princeton.edu/~blei/papers/BleiMcAuliffe2007.pdf)
+where 
+est - estimate parameters
+sample-data/smsSpam/smsSpam.documents.txt - training data
+sample-data/smsSpam/smsSpam.isSpam.txt - train labels
+settings.txt - file with settings (as described in README_ORIG.md)
+0.1 - as described in README_ORIG.md 
+seeded - as described in README_ORIG.md
+results/train_test_2 - output folder with models. Each model is in format as described in README_ORIG.md
+3 - number of full iteration. Single iteration trains all models 
+5,10,15,20,30 - topic numbers for trained models
 
 
----
+Example Inference
+./slda inf sample-data/smsSpam/smsSpamTest.documents.txt sample-data/smsSpam/smsSpamTest.isSpam.txt settings.txt results/train_test_2 results/infer_test_2 3 5,10,15,20,30
 
-## README
+where
+inf - inference phase
+sample-data/smsSpam/smsSpamTest.documents.txt - test data 
+sample-data/smsSpam/smsSpamTest.isSpam.txt - test labels
+settings.txt - as described in README_ORIG.md
+results/train_test_2 - folder with models
+results/infer_test_2 - output folder with results of inference
+3 - number of full iteration 
+5,10,15,20,30 - topic numbers for trained models
 
-Note that this code requires the Gnu Scientific Library, http://www.gnu.org/software/gsl/
-
-------------------------------------------------------------------------
-
-
-TABLE OF CONTENTS
-
-
-A. COMPILING
-
-B. ESTIMATION
-
-C. INFERENCE
-
-
-------------------------------------------------------------------------
-
-A. COMPILING
-
-Type "make" in a shell. Make sure the GSL is installed.
-
-
-------------------------------------------------------------------------
-
-B. ESTIMATION
-
-Estimate the model by executing:
-
-     slda [est] [data] [label] [settings] [alpha] [k] [seeded/random/model_path] [directory]
-
-The saved models are in two files:
-
-     <iteration>.model is the model saved in the binary format, which is easy and
-     fast to use for inference.
-
-     <iteration>.model.txt is the model saved in the text format, which is
-     convenient for printing topics or analysis using python.
-     
-
-The variational posterior Dirichlets are in:
-
-     <iteration>.gamma
-
-
-Data format
-
-(1) [data] is a file where each line is of the form:
-
-     [M] [term_1]:[count] [term_2]:[count] ...  [term_N]:[count]
-
-where [M] is the number of unique terms in the document, and the
-[count] associated with each term is how many times that term appeared
-in the document. 
-
-(2) [label] is a file where each line is the corresponding label for [data].
-The labels must be 0, 1, ..., C-1, if we have C classes.
-
-
-------------------------------------------------------------------------
-
-C. INFERENCE
-
-To perform inference on a different set of data (in the same format as
-for estimation), execute:
-
-     slda [inf] [data] [label] [settings] [model] [directory]
-    
-where [model] is the binary file from the estimation.
-     
-The predictive labels are in:
-
-     inf-labels.dat
-
-The variational posterior Dirichlets are in:
-
-     inf-gamma.dat

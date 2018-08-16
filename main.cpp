@@ -24,7 +24,8 @@
 #include "corpus.h"
 #include "utils.h"
 #include "slda.h"
-#include "ensemble_em.h"
+//#include "ensemble_em.h"
+#include "ensemble_em_2.h"
 
 void help( void ) {
     printf("usage: slda [est] [data] [label] [settings] [alpha] [k] [random/seeded/model_path] [directory]\n");
@@ -49,19 +50,35 @@ int main(int argc, char* argv[])
         setting.read_settings(setting_filename);
 
         double alpha = atof(argv[5]);
-        int num_topics = atoi(argv[6]);
-        printf("number of topics is %d\n", num_topics);
-        char * init_method = argv[7];
-        char * directory = argv[8];
+        //int num_topics = atoi(argv[6]);
+        //printf("number of topics is %d\n", num_topics);
+        char * init_method = argv[6];
+        char * directory = argv[7];
         printf("models will be saved in %s\n", directory);
         make_directory(directory);
+        
+        int iters_num = atoi(argv[8]);
+        
+        char **topic_numbers = NULL;
+        int models_count = split(argv[9], ',', &topic_numbers);
+        int *topic_numbers_int = (int*) malloc(sizeof(int) * models_count);
+        
+        int i = 0;
+        for (i = 0; i < models_count; i++){
+            topic_numbers_int[i] = atoi(topic_numbers[i]);
+        }
+        
+        printf("found %d tokens.\n", models_count);
+
+        for (i = 0; i < models_count; i++)
+            printf("int #%d: %d\n", i, topic_numbers_int[i]);
 
         //slda model;
         //model.init(alpha, num_topics, &c);
         //model.v_em(&c, &setting, init_method, directory);
         
         
-        train_ensemble(alpha, &c, &setting, directory);
+        train_ensemble_2(alpha, &c, &setting, directory, iters_num, topic_numbers_int, models_count);
     }
 
     if (strcmp(argv[1], "inf") == 0)
@@ -74,14 +91,32 @@ int main(int argc, char* argv[])
         char * setting_filename = argv[4];
         setting.read_settings(setting_filename);
 
-        char * model_filename = argv[5];
-        char * directory = argv[6];
-        printf("\nresults will be saved in %s\n", directory);
-        make_directory(directory);
+        char * root_model_directory = argv[5];
+        char * out_directory = argv[6];
+        printf("\nresults will be saved in %s\n", out_directory);
+        make_directory(out_directory);
+        
+        int iters_num = atoi(argv[7]);
+        
+        char **topic_numbers = NULL;
+        int models_count = split(argv[8], ',', &topic_numbers);
+        int *topic_numbers_int = (int*) malloc(sizeof(int) * models_count);
+        
+        int i = 0;
+        for (i = 0; i < models_count; i++){
+            topic_numbers_int[i] = atoi(topic_numbers[i]);
+        }
+        
+        printf("found %d tokens.\n", models_count);
+        
+        for (i = 0; i < models_count; i++)
+            printf("int #%d: %d\n", i, topic_numbers_int[i]);
 
-        slda model;
-        model.load_model(model_filename);
-        model.infer_only(&c, &setting, directory);
+//        slda model;
+//        model.load_model(root_model_directory);
+//        model.infer_only(&c, &setting, out_directory);
+        
+        infer_all(&c, &setting, out_directory, root_model_directory, iters_num, topic_numbers_int, models_count);
     }
 
     return 0;

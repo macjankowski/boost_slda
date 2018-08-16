@@ -16,6 +16,8 @@ void make_directory(char* name);
 int argmax(double* x, int n);
 int map_idx(int row, int col, int dim);
 double ** transpose(double ** mat, int nrows, int ncols);
+int split(char *str, char c, char ***arr);
+int parse_topics (char *str, char c, int** topic_numbers_int);
 
 #endif
 

@@ -32,6 +32,10 @@ typedef struct {
 typedef struct {
     double ** word_ss;
     double * word_total_ss;
+    
+    double ** weighted_word_ss;
+    double * weighted_word_total_ss;
+    
     int num_docs;
     z_stat * z_bar;
     int * labels;
@@ -41,18 +45,27 @@ typedef struct {
 class prediction
 {
 public:
-    double probability;
-    int label;
+    double probability_of_predicted_label; // probability of label with highest score
+    double probability_of_true_label;
+    int true_label;
+    int predicted_label; // label with highest score
 public:
     prediction()
     {
-        probability = 0.0;
-        label = -1;
+        probability_of_true_label = 0.0;
+        probability_of_predicted_label = 0.0;
+        true_label = -1;
+        predicted_label = -1;
     }
     ~prediction()
     {
-        probability = 0.0;
-        label = -1;
+        probability_of_true_label = 0.0;
+        probability_of_predicted_label = 0.0;
+        true_label = -1;
+        predicted_label = -1;
+    }
+    int is_correct(){
+        return true_label == predicted_label;
     }
 };
 
@@ -60,10 +73,10 @@ class classification
 {
 public:
     vector<prediction*> predictions;
-    int num_docs;
 public:
     classification();
     ~classification();
+    double weighted_error(double *weights, int num_docs);
 };
 
 class slda
@@ -74,7 +87,7 @@ public:
     void free_model();
     void init(double alpha_, int num_topics_, const corpus * c);
     void v_em(corpus * c, const settings * setting,
-              const char * start, const char * directory);
+              const char * start, const char * directory, double *r);
 
     void save_model(const char * filename);
     void save_model_text(const char * filename);
@@ -88,9 +101,9 @@ public:
     void random_initialize_ss(suffstats * ss, corpus * c);
     void corpus_initialize_ss(suffstats* ss, corpus * c);
     void load_model_initialize_ss(suffstats* ss, corpus * c);
-    void mle(suffstats * ss, int eta_update, const settings * setting);
+    void mle(suffstats * ss, int eta_update, const settings * setting, double* r);
 
-    double doc_e_step(document* doc, double* gamma, double** phi, suffstats * ss, int eta_update, const settings * setting);
+    double doc_e_step(document* doc, double* gamma, double** phi, suffstats * ss, int eta_update, const settings * setting, double *weights);
 
     double lda_inference(document* doc, double* var_gamma, double** phi, const settings * setting);
     double lda_compute_likelihood(document* doc, double** phi, double* var_gamma);

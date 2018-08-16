@@ -33,6 +33,7 @@ struct opt_parameter
 	suffstats * ss;
 	slda * model;
 	double PENALTY;
+    double * weights;
 };
 
 /*

@@ -1,3 +1,8 @@
+
+Written by Maciej Jankowski, maciej.jankowski@wat.edu.pl, most of code is from https://github.com/blei-lab/class-slda
+
+This is a C++ implementation of Boost Multi-class sLDA, the extension of class-slda that works in ensemble of clissifiers. The details are described in Boost multi-class slda model for text classication, 01 2018. Artificial Intelligence and Soft Computing - 17th International Conference, ICAISC 2018, Zakopane, Poland, June 3-7, 2018, Proceedings, Part I.
+
 Example training
 
 ./slda est sample-data/smsSpam/smsSpam.documents.txt sample-data/smsSpam/smsSpam.isSpam.txt settings.txt 0.1 seeded results/train_test_2 3 5,10,15,20,30
